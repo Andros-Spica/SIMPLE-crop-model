@@ -1395,7 +1395,7 @@ temperature_dailyUpperDeviation
 PLOT
 638
 160
-1294
+1252
 280
 Temperature
 days
@@ -2070,7 +2070,7 @@ true
 "" ""
 PENS
 "RAIN" 1.0 1 -16777216 true "" "plot RAIN"
-"ET_0" 1.0 0 -2674135 true "" "plot ET_0"
+"ET0" 1.0 0 -2674135 true "" "plot ET_0"
 
 PLOT
 403
