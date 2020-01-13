@@ -372,7 +372,7 @@ to setup-patches
 
     set f_Solar_max 0.95
 
-    set yield (list)
+    set yield 0
   ]
 
 end
@@ -703,8 +703,8 @@ to update-crops
     [
       ;;; calculate harvest yield
       ifelse (TT >= item cropIndex T_sum)
-      [ set yield lput (biomass * item cropIndex HI) yield ]
-      [ set yield lput 0 yield ]
+      [ set yield (biomass * item cropIndex HI) ]
+      [ set yield 0 ]
       ;;; reset biomass and auxiliary variables
       reset-variables
     ]
@@ -877,7 +877,7 @@ to update-counters
   let newMaxBiomass max [biomass] of patches
   set maxBiomass max (list maxBiomass newMaxBiomass)
 
-  carefully [ set maxMeanYield max [mean yield] of patches ] [ set maxMeanYield 0 ]
+  carefully [ set maxMeanYield max [yield] of patches ] [ set maxMeanYield 0 ]
 
 end
 
@@ -1113,10 +1113,10 @@ to-report clampMinMax [ value minValue maxValue ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-293
-22
-605
-335
+18
+362
+330
+675
 -1
 -1
 16.0
@@ -1194,24 +1194,6 @@ type-of-experiment
 "user-defined" "random"
 0
 
-PLOT
-294
-344
-606
-464
-mean yield
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" "set-histogram-num-bars 20\ncarefully [ set-plot-x-range -0.01 (0.01 + ceiling max [mean yield] of patches) ] [ ]"
-PENS
-"default" 1.0 1 -16777216 true "" "carefully [ histogram [mean yield] of patches] [ ]"
-
 MONITOR
 45
 236
@@ -1224,10 +1206,10 @@ sowingDay
 11
 
 MONITOR
-1672
-129
-1854
-166
+1429
+130
+1611
+167
 NIL
 temperature_annualMinAt2m
 2
@@ -1252,10 +1234,10 @@ NIL
 1
 
 MONITOR
-1672
-95
-1857
-132
+1429
+96
+1614
+133
 NIL
 temperature_annualMaxAt2m
 2
@@ -1285,10 +1267,10 @@ HarvestingDay
 11
 
 SLIDER
-1303
-171
-1674
-204
+1060
+172
+1431
+205
 temperature_daily-mean-fluctuation
 temperature_daily-mean-fluctuation
 0
@@ -1300,10 +1282,10 @@ temperature_daily-mean-fluctuation
 HORIZONTAL
 
 SLIDER
-1303
-206
-1670
-239
+1060
+207
+1427
+240
 temperature_daily-lower-deviation
 temperature_daily-lower-deviation
 0
@@ -1315,10 +1297,10 @@ temperature_daily-lower-deviation
 HORIZONTAL
 
 SLIDER
-1304
-239
-1671
-272
+1061
+240
+1428
+273
 temperature_daily-upper-deviation
 temperature_daily-upper-deviation
 0
@@ -1330,10 +1312,10 @@ temperature_daily-upper-deviation
 HORIZONTAL
 
 SLIDER
-1301
-97
-1672
-130
+1058
+98
+1429
+131
 temperature_annual-max-at-2m
 temperature_annual-max-at-2m
 temperature_annual-min-at-2m
@@ -1345,10 +1327,10 @@ temperature_annual-min-at-2m
 HORIZONTAL
 
 SLIDER
-1303
-134
-1667
-167
+1060
+135
+1424
+168
 temperature_annual-min-at-2m
 temperature_annual-min-at-2m
 -10
@@ -1360,10 +1342,10 @@ temperature_annual-max-at-2m
 HORIZONTAL
 
 MONITOR
-1675
-169
-1853
-206
+1432
+170
+1610
+207
 NIL
 temperature_dailyMeanFluctuation
 2
@@ -1371,10 +1353,10 @@ temperature_dailyMeanFluctuation
 9
 
 MONITOR
-1671
-205
-1845
-242
+1428
+206
+1602
+243
 NIL
 temperature_dailyLowerDeviation
 2
@@ -1382,10 +1364,10 @@ temperature_dailyLowerDeviation
 9
 
 MONITOR
-1673
-241
-1847
-278
+1430
+242
+1604
+279
 NIL
 temperature_dailyUpperDeviation
 2
@@ -1393,9 +1375,9 @@ temperature_dailyUpperDeviation
 9
 
 PLOT
-638
+341
 160
-1294
+997
 280
 Temperature
 days
@@ -1435,10 +1417,10 @@ currentDayOfYear
 11
 
 SLIDER
-1305
-290
-1543
-323
+1020
+283
+1258
+316
 CO2-mean
 CO2-mean
 250
@@ -1450,10 +1432,10 @@ ppm (default: 250)
 HORIZONTAL
 
 SLIDER
-1306
-326
-1575
-359
+1021
+319
+1290
+352
 CO2-annual-deviation
 CO2-annual-deviation
 0
@@ -1465,9 +1447,9 @@ ppm (default: 2)
 HORIZONTAL
 
 PLOT
-639
+342
 281
-1252
+955
 401
 CO2
 days
@@ -1483,10 +1465,10 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot CO2"
 
 SLIDER
-1306
-361
-1568
-394
+1021
+354
+1283
+387
 CO2-daily-fluctuation
 CO2-daily-fluctuation
 0
@@ -1542,9 +1524,9 @@ NIL
 1
 
 PLOT
-638
+341
 10
-1301
+1051
 160
 mean biomass of patches
 days
@@ -1557,14 +1539,16 @@ true
 true
 "" ""
 PENS
-"wheat" 1.0 0 -2674135 true "" "plot mean [biomass] of patches with [position crop typesOfCrops = 0]"
-"rice" 1.0 0 -11221820 true "" "plot mean [biomass] of patches with [position crop typesOfCrops = 1]"
+"wheat (biomass)" 1.0 0 -2674135 true "" "plot mean [biomass] of patches with [position crop typesOfCrops = 0]"
+"rice (biomass)" 1.0 0 -11221820 true "" "plot mean [biomass] of patches with [position crop typesOfCrops = 1]"
+"wheat (yield)" 1.0 0 -1069655 true "" "plot mean [yield] of patches with [position crop typesOfCrops = 0]"
+"rice (yield)" 1.0 0 -4528153 true "" "plot mean [yield] of patches with [position crop typesOfCrops = 1]"
 
 SLIDER
-1266
-443
-1661
-476
+981
+436
+1376
+469
 solar_annual-max
 solar_annual-max
 solar_annual-min
@@ -1576,10 +1560,10 @@ kWh/m2 (default: 7)
 HORIZONTAL
 
 SLIDER
-1266
-404
-1663
-437
+981
+397
+1378
+430
 solar_annual-min
 solar_annual-min
 2
@@ -1591,10 +1575,10 @@ kWh/m2 (default: 3)
 HORIZONTAL
 
 SLIDER
-1267
-481
-1660
-514
+982
+474
+1375
+507
 solar_daily-mean-fluctuation
 solar_daily-mean-fluctuation
 0
@@ -1606,9 +1590,9 @@ kWh/m2 (default: 1)
 HORIZONTAL
 
 PLOT
-639
+342
 401
-1252
+955
 521
 Solar radiation
 days
@@ -1624,10 +1608,10 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot solarRadiation / 3.6"
 
 MONITOR
-1574
-288
-1643
-325
+1289
+281
+1358
+318
 NIL
 CO2_mean
 2
@@ -1635,10 +1619,10 @@ CO2_mean
 9
 
 MONITOR
-1575
-325
-1694
-362
+1290
+318
+1409
+355
 NIL
 CO2_annualDeviation
 2
@@ -1646,10 +1630,10 @@ CO2_annualDeviation
 9
 
 MONITOR
-1575
-360
-1692
-397
+1290
+353
+1407
+390
 NIL
 CO2_dailyFluctuation
 2
@@ -1657,10 +1641,10 @@ CO2_dailyFluctuation
 9
 
 MONITOR
-1666
-400
-1778
-437
+1381
+393
+1493
+430
 NIL
 solar_annualMin
 3
@@ -1668,10 +1652,10 @@ solar_annualMin
 9
 
 MONITOR
-1664
-438
-1778
-475
+1379
+431
+1493
+468
 NIL
 solar_annualMax
 3
@@ -1679,10 +1663,10 @@ solar_annualMax
 9
 
 MONITOR
-1663
-478
-1821
-515
+1378
+471
+1536
+508
 NIL
 solar_dailyMeanFluctuation
 3
@@ -1690,10 +1674,10 @@ solar_dailyMeanFluctuation
 9
 
 SLIDER
-1304
-543
-1705
-576
+1288
+667
+1689
+700
 precipitation_yearly-mean
 precipitation_yearly-mean
 0
@@ -1705,10 +1689,10 @@ mm/year (default: 400)
 HORIZONTAL
 
 SLIDER
-1303
-575
-1705
-608
+1287
+699
+1689
+732
 precipitation_yearly-sd
 precipitation_yearly-sd
 0
@@ -1900,10 +1884,10 @@ precipitation_daily-cum_rate2_yearly-sd
 HORIZONTAL
 
 MONITOR
-1704
-542
-1832
-579
+1688
+666
+1816
+703
 NIL
 precipitation_yearlyMean
 2
@@ -1911,10 +1895,10 @@ precipitation_yearlyMean
 9
 
 MONITOR
-1705
-577
-1843
-614
+1689
+701
+1827
+738
 NIL
 precipitation_yearlySd
 2
@@ -2054,9 +2038,9 @@ precipitation_dailyCum_rate2_yearlySd
 9
 
 PLOT
-639
+342
 521
-1300
+1003
 641
 precipitation
 days
@@ -2073,10 +2057,10 @@ PENS
 "ET_0" 1.0 0 -2674135 true "" "plot ET_0"
 
 PLOT
-403
-588
-636
-708
+1043
+640
+1276
+760
 cumulative year precipitation
 NIL
 NIL
@@ -2091,10 +2075,10 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot-cumPrecipitation-table"
 
 PLOT
-403
-469
-636
-589
+1043
+521
+1276
+641
 year preciptation
 NIL
 NIL
@@ -2109,9 +2093,9 @@ PENS
 "default" 1.0 1 -16777216 true "" "plot-precipitation-table"
 
 PLOT
-639
+342
 642
-1326
+1029
 762
 Soil Water Balance model (per patch)
 NIL
@@ -2473,6 +2457,112 @@ NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="2190"/>
+    <metric>T</metric>
+    <metric>T_max</metric>
+    <metric>T_min</metric>
+    <metric>RAIN</metric>
+    <metric>solarRadiation</metric>
+    <metric>ET_0</metric>
+    <metric>mean [WATp] of patches</metric>
+    <metric>mean [ARID] of patches</metric>
+    <metric>mean [biomass] of patches with [position crop typesOfCrops = 0]</metric>
+    <metric>mean [biomass] of patches with [position crop typesOfCrops = 1]</metric>
+    <metric>mean [yield] of patches with [position crop typesOfCrops = 0]</metric>
+    <metric>mean [yield] of patches with [position crop typesOfCrops = 1]</metric>
+    <enumeratedValueSet variable="precipitation_daily-cum_rate2_yearly-mean">
+      <value value="0.05"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="CO2-mean">
+      <value value="250"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="solar_annual-min">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_rate2_yearly-sd">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="CO2-daily-fluctuation">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_yearly-sd">
+      <value value="130"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="solar_annual-max">
+      <value value="7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_plateau-value_yearly-sd">
+      <value value="0.05"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_n-sample">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_inflection1_yearly-sd">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="CO2-annual-deviation">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_max-sample-size">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_inflection2_yearly-sd">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_inflection2_yearly-mean">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="temperature_daily-mean-fluctuation">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="temperature_annual-min-at-2m">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="solar_daily-mean-fluctuation">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="temperature_daily-lower-deviation">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="temperature_annual-max-at-2m">
+      <value value="40"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="temperature_daily-upper-deviation">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="end-simulation-in-tick">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_yearly-mean">
+      <value value="400"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_inflection1_yearly-mean">
+      <value value="40"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_rate1_yearly-mean">
+      <value value="0.15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="display-mode">
+      <value value="&quot;crops&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_plateau-value_yearly-mean">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="precipitation_daily-cum_rate1_yearly-sd">
+      <value value="0.02"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="type-of-experiment">
+      <value value="&quot;user-defined&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
