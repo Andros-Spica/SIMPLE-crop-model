@@ -2470,6 +2470,8 @@ NetLogo 6.0.4
     <metric>ET_0</metric>
     <metric>mean [WATp] of patches</metric>
     <metric>mean [ARID] of patches</metric>
+    <metric>item 0 sugHarvestingDay</metric>
+    <metric>item 1 sugHarvestingDay</metric>
     <metric>mean [biomass] of patches with [position crop typesOfCrops = 0]</metric>
     <metric>mean [biomass] of patches with [position crop typesOfCrops = 1]</metric>
     <metric>mean [yield] of patches with [position crop typesOfCrops = 0]</metric>
