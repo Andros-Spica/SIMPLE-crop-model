@@ -1028,7 +1028,7 @@ Parameters:
     <node id="n15">
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
-          <y:Geometry height="377.1130181618123" width="1717.1606169142617" x="1531.4042699999186" y="2623.9182050056593"/>
+          <y:Geometry height="377.1130181618123" width="1717.1606169142617" x="1531.4042699999186" y="2588.819926851175"/>
           <y:Fill color="#FF9900" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="24" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="327.42578125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="1439.34765625" x="138.90648033213074" xml:space="preserve" y="24.84361845590638">SIMPLE Crop model:
@@ -2042,14 +2042,14 @@ f_Solar * f_Temp * MIN(f_Heat, f_Water)<y:LabelModel><y:SmartNodeLabelModel dist
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="413.5" width="475.205728852839" x="1543.0437432091035" y="2180.4182050056593"/>
+              <y:Geometry height="369.561767578125" width="475.205728852839" x="1543.0437432091035" y="2180.4182050056593"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
               <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="475.205728852839" x="0.0" xml:space="preserve" y="0.0">update-f_CO2 (cropIndex) </y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="25" rightF="24.522031664714177" top="0" topF="0.0"/>
             </y:GroupNode>
             <y:GroupNode>
               <y:Geometry height="50.0" width="50.0" x="1543.0437432091035" y="2159.551685748913"/>
@@ -2120,18 +2120,6 @@ f_Solar * f_Temp * MIN(f_Heat, f_Water)<y:LabelModel><y:SmartNodeLabelModel dist
         </node>
         <node id="n24::n5">
           <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="28.938232421875" width="445.205728852839" x="1558.0437432091035" y="2549.9799725837843"/>
-              <y:Fill color="#FFCC00" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="10" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="415.083984375" x="15.0608722389195" xml:space="preserve" y="0.2181396484375">ISSUE: values given for S_CO2 in Table 1a (ranging from 0.1 to 0.01) produce f(CO2) 
-way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-350)=5)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:Shape type="rectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
-        <node id="n24::n6">
-          <data key="d6">
             <y:GenericNode configuration="com.yworks.flowchart.start1">
               <y:Geometry height="40.0" width="80.0" x="1621.146607635523" y="2217.7946698494093"/>
               <y:Fill color="#E8EEF7" color2="#99CC00" transparent="false"/>
@@ -2140,7 +2128,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
             </y:GenericNode>
           </data>
         </node>
-        <node id="n24::n7">
+        <node id="n24::n6">
           <data key="d6">
             <y:GenericNode configuration="com.yworks.flowchart.terminator">
               <y:Geometry height="40.0" width="80.0" x="1881.0526885182308" y="2494.9799725837843"/>
@@ -2782,7 +2770,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
     <edge id="e18" source="n23::n10" target="n24">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="227.56260224198695" ty="-178.21652515787628">
+          <y:Path sx="0.0" sy="0.0" tx="227.56260224198695" ty="-159.2793568294465">
             <y:Point x="2037.0743888850996" y="1746.925356781817"/>
             <y:Point x="2037.0743888850996" y="2208.951679847783"/>
           </y:Path>
@@ -2792,7 +2780,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n24::e0" source="n24::n0" target="n24::n7">
+    <edge id="n24::e0" source="n24::n0" target="n24::n6">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -2826,7 +2814,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n24::e3" source="n24::n2" target="n24::n7">
+    <edge id="n24::e3" source="n24::n2" target="n24::n6">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -2861,7 +2849,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n24::e6" source="n24::n4" target="n24::n7">
+    <edge id="n24::e6" source="n24::n4" target="n24::n6">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -2874,7 +2862,7 @@ way beyond the unity scale (e.g. if S_CO2=0.08 and CO2=400, f(CO2)=1+0.08*(400-3
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n24::e7" source="n24::n6" target="n24::n1">
+    <edge id="n24::e7" source="n24::n5" target="n24::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
